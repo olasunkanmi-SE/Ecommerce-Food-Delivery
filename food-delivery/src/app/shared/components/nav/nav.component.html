@@ -1,0 +1,68 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    style="background-color: #fff !important; color: #000 !important;"
+    #drawer
+    class="sidenav"
+    fixedInViewport
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="(isHandset$ | async) === false"
+  >
+    <mat-nav-list>
+      <a mat-list-item>
+        <span class="material-icons">
+          home
+        </span>
+        &nbsp; Home</a
+      >
+      <a mat-list-item>
+        <span class="material-icons">
+          local_shipping
+        </span>
+        &nbsp; Track Order</a
+      >
+      <a mat-list-item>
+        <span class="material-icons">
+          lock
+        </span>
+        &nbsp; Login</a
+      >
+      <a mat-list-item>
+        <span class="material-icons">
+          account_circle
+        </span>
+        &nbsp; Sign Up</a
+      >
+
+      <!-- <button [routerLink]="['auth/login']" mat-raised-button color="accent">
+        Logout
+      </button> -->
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async"
+      >
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+
+      <!-- <span>VIEWQWEST</span> -->
+
+      <span class="spacer"></span>
+      <span class="main-menu">
+        <a>Track Order</a>
+        <a>Sign In </a>
+        <a> <span class="material-icons"> shopping_cart </span>RM 0.00</a>
+        <button mat-raised-button color="accent">
+          Sign Up
+        </button>
+      </span>
+    </mat-toolbar>
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>
