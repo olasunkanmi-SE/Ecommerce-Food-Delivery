@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "food-delivery"
+    }
+  },
+  "defaultProject": "food-delivery",
+  "cli": {
+    "analytics": "04929db9-baee-45a3-9eb7-1be0f2be4478"
+  }
 }
