@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-- name: GitGuardian Shield Action
+  name: GitGuardian Shield Action
   uses: GitGuardian/gg-shield-action@v1.1.0
 
 
@@ -8,9 +8,9 @@
 # events but only for the master branch
 on:
   push:
-    branches: [ master ]
+    branches: [ master,feature/appdev ]
   pull_request:
-    branches: [ master ]
+    branches: [ master, feature/appdev ]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
