@@ -1,3 +1,4 @@
+
 import { environment } from './../environments/environment';
 import { MatModule } from './shared/components/mat/mat.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -20,6 +21,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
     AgmCoreModule.forRoot({ apiKey: environment.googleAPIKey }),
+
   ],
   providers: [],
   bootstrap: [AppComponent],
