@@ -36,12 +36,21 @@
       <div class="d-flex">
         <div class="p-2">
           <p style="margin-top: -20px;">
-            <button mat-raised-button color="primary">Location</button>
+            <button
+              (click)="getUserLocation()"
+              mat-raised-button
+              color="primary"
+              type="button"
+            >
+              Location
+            </button>
           </p>
         </div>
         <div class="ml-auto p-2">
           <p style="margin-top: -20px;">
-            <button mat-raised-button color="secondary">Restaurants</button>
+            <button mat-raised-button color="secondary">
+              Restaurants
+            </button>
           </p>
         </div>
       </div>
