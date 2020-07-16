@@ -1,0 +1,8 @@
+{
+    "/v3/*": {
+        "target": "https://api.yelp.com",
+        "secure": true,
+        "logLevel": "debug",
+        "changeOrigin": true
+    }
+}

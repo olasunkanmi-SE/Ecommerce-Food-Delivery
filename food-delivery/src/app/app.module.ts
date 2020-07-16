@@ -13,7 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RootStoreModule } from './root-store/root-store.module';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent, NavComponent, HomeComponent],
@@ -24,6 +24,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
     MatModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     AgmCoreModule.forRoot({ apiKey: environment.googleAPIKey }),
     RootStoreModule,
     StoreDevtoolsModule.instrument({

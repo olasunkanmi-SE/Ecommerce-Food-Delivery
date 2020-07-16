@@ -1,3 +1,4 @@
+import { BusinessService } from './../businesses/shared/business.service';
 import { GeoService } from './services/geo.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -18,7 +19,8 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private geoService: GeoService,
-    private apiLoader: MapsAPILoader
+    private apiLoader: MapsAPILoader,
+    private businessService: BusinessService
   ) {}
 
   ngOnInit(): void {}
@@ -42,5 +44,9 @@ export class HomeComponent implements OnInit {
       //   });
       // });
     });
+  }
+
+  searchBusiness() {
+    this.businessService.getBusinesses();
   }
 }

@@ -5,8 +5,10 @@
 export const environment = {
   production: false,
   googleAPIKey: '**********************',
-  backendAPI: 'https://api.yelp.com/v3/businesses/',
-  yelpBearerToken: '************************',
+  backendAPI:
+    'https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses',
+  yelpBearerToken:
+    'Bearer bOd1ilL_DTUQhDRl4yqLsHOzeKVoK8SUa9QckOJepYGl3M3cMtCvY0TOq_NKeGjC599lC1PlSX3ano8r-2Dl6FUIYOcv6ODQv3nxs0cfJZYP-KVvDlT3QBf00x0PX3Yx',
 };
 
 /*
