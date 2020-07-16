@@ -6,6 +6,7 @@ export const environment = {
   production: false,
   googleAPIKey: '**********************',
   backendAPI: 'https://api.yelp.com/v3/businesses/',
+  yelpBearerToken: '*********',
 };
 
 /*
