@@ -23,24 +23,24 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {}
   getUserLocation() {
+    this.geoService.getUserLocation();
     this.location$ = this.geoService.geoLocation$.pipe(tap());
     this.location$.subscribe((res) => {
       this.lng = res.coords.longitude;
       this.lat = res.coords.latitude;
       this.getAddress = (this.lat, this.lng);
-      this.apiLoader.load().then(() => {
-        let geoCoder = new google.maps.Geocoder();
-        let latlng = {
-          lat: this.lat,
-          lng: this.lng,
-        };
-        geoCoder.geocode({ location: latlng }, (results) => {
-          if (results[0]) {
-            this.currentLocation = results[0].formatted_address;
-          }
-        });
-      });
+      // this.apiLoader.load().then(() => {
+      //   let geoCoder = new google.maps.Geocoder();
+      //   let latlng = {
+      //     lat: this.lat,
+      //     lng: this.lng,
+      //   };
+      //   geoCoder.geocode({ location: latlng }, (results) => {
+      //     if (results[0]) {
+      //       this.currentLocation = results[0].formatted_address;
+      //     }
+      //   });
+      // });
     });
-    this.geoService.getUserLocation();
   }
 }
