@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
   location$: Observable<any>;
   lng;
   lat;
-  getAddress;
+  userLocation;
   currentLocation;
 
   constructor(
@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
     this.location$.subscribe((res) => {
       this.lng = res.coords.longitude;
       this.lat = res.coords.latitude;
-      this.getAddress = (this.lat, this.lng);
+      this.userLocation = (this.lat, this.lng);
       // this.apiLoader.load().then(() => {
       //   let geoCoder = new google.maps.Geocoder();
       //   let latlng = {

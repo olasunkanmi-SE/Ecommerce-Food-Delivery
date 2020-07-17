@@ -14,6 +14,7 @@ import { RootStoreModule } from './root-store/root-store.module';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [AppComponent, NavComponent, HomeComponent],
@@ -32,6 +33,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
       logOnly: environment.production,
     }),
     StoreModule.forRoot({}),
+    NgbModule,
   ],
 
   providers: [

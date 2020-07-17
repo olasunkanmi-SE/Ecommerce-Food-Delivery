@@ -3,7 +3,7 @@ import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { takeUntil } from 'rxjs/operators';
-import { Observable, Subject, ReplaySubject } from 'rxjs';
+import { Observable, Subject, ReplaySubject, Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -11,13 +11,14 @@ import { Router } from '@angular/router';
 })
 export class BusinessService {
   backendAPI = environment.backendAPI;
-  location: { lat: string; lng: string } = JSON.parse(
-    localStorage.getItem('location')
-  );
+  location: { lat: string; lng: string };
   longitude;
   latitude;
+  businesses;
   term = 'clubs';
   destroy$: Subject<boolean> = new Subject<boolean>();
+  getCordinate$: Observable<any>;
+  cordinateSub: Subscription;
   //Cache the http response
   businesses$: ReplaySubject<any> = new ReplaySubject<any>(1);
   constructor(
@@ -36,13 +37,20 @@ export class BusinessService {
       )
       .pipe(takeUntil(this.destroy$))
       .subscribe((res) => {
-        this.businesses$.next(res);
-        console.log(res);
-        // this.router.navigate(['businesses']);
+        this.businesses = res;
+        this.businesses$.next(this.businesses);
+        this.router.navigate(['businesses']);
       });
   }
   getUserLocation() {
-    this.longitude = this.location.lng;
-    this.latitude = this.location.lat;
+    this.location = this.geoService.location;
+    if (location) {
+      this.longitude = this.location.lng;
+      this.latitude = this.location.lat;
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.unsubscribe();
   }
 }
