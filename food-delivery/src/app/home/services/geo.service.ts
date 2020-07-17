@@ -6,6 +6,9 @@ import { Subject } from 'rxjs';
 })
 export class GeoService {
   geoLocation$: Subject<any> = new Subject<any>();
+  location;
+  lat;
+  lng: {};
   private started = false;
   constructor() {}
 
@@ -15,7 +18,12 @@ export class GeoService {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           if (position) {
+            this.location = {
+              lng: position.coords.longitude,
+              lat: position.coords.latitude,
+            };
             this.geoLocation$.next(position);
+            return this.location;
           }
         },
         (err) => {
