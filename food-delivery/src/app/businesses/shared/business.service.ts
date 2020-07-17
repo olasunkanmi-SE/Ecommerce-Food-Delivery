@@ -15,7 +15,9 @@ export class BusinessService {
   longitude;
   latitude;
   businesses;
-  term = 'restaurants';
+  // searchedBusiness: Observable<string>;
+  // searchSub: Subscription;
+  term: string;
   destroy$: Subject<boolean> = new Subject<boolean>();
   getCordinate$: Observable<any>;
   cordinateSub: Subscription;
@@ -30,6 +32,7 @@ export class BusinessService {
   ngOnInit(): void {}
 
   getBusinesses() {
+    this.term = localStorage.getItem('search');
     this.getUserLocation();
     return this.httpClient
       .get(

@@ -1,7 +1,7 @@
 import { BusinessService } from './../businesses/shared/business.service';
 import { GeoService } from './services/geo.service';
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { tap, startWith, map } from 'rxjs/operators';
 import { MapsAPILoader } from '@agm/core';
 import { FormControl, FormBuilder, FormGroup } from '@angular/forms';
@@ -19,8 +19,17 @@ export class HomeComponent implements OnInit {
   currentLocation;
   searchForm;
   searchControl = new FormControl();
-  options: string[] = ['restaurants', 'clubs'];
+  options: string[] = [
+    'restaurants',
+    'clubs',
+    'delivery',
+    'spas',
+    'barbers',
+    'malls',
+    'gyms',
+  ];
   filteredOptions: Observable<string[]>;
+  businessSearch: Subject<string> = new Subject<string>();
 
   constructor(
     private geoService: GeoService,
@@ -38,7 +47,11 @@ export class HomeComponent implements OnInit {
       map((value) => this._filter(value))
     );
   }
-  getUserLocation() {
+
+  getLocation() {
+    this.getUserLocation();
+  }
+  private getUserLocation() {
     this.geoService.getUserLocation();
     this.location$ = this.geoService.geoLocation$.pipe(tap());
     this.location$.subscribe((res) => {
@@ -72,8 +85,11 @@ export class HomeComponent implements OnInit {
     this.businessService.getBusinesses();
   }
 
-  getSearchValue() {
-    let x = this.searchForm.value;
-    console.log(x);
+  getSearchValue(): string {
+    let searchTerm: { search: string } = this.searchForm.value;
+    let searchValue: string = searchTerm.search;
+    localStorage.setItem('search', searchValue);
+    // this.businessSearch.next(searchValue);
+    return searchValue;
   }
 }
