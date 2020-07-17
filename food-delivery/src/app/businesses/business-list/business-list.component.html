@@ -1,32 +1,42 @@
 <!-- <p *ngFor="let business of businesses">{{ business.name }}</p> -->
 <div class="container">
   <div class="row">
-    <div *ngFor="let business of businesses" class="col-md-3 mb-3">
+    <div *ngFor="let business of businesses" class="col-md-4 mb-3">
       <div>
         <mat-card class="example-card">
-          <mat-card-header>
-            <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>{{ business.name }}</mat-card-title>
-            <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-          </mat-card-header>
           <img
             style="max-height: 250px;"
             mat-card-image
             src="{{ business.image_url }}"
-            alt="Photo of a Shiba Inu"
           />
-          <mat-card-content>
-            <p>
-              The Shiba Inu is the smallest of the six original and distinct
-              spitz breeds of dog from Japan. A small, agile dog that copes very
-              well with mountainous terrain, the Shiba Inu was originally bred
-              for hunting.
-            </p>
-          </mat-card-content>
-          <mat-card-actions>
-            <button mat-button>LIKE</button>
-            <button mat-button>SHARE</button>
-          </mat-card-actions>
+          <mat-accordion class="example-headers-align" multi>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  {{ business.name }}
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+
+              <mat-card-content>
+                <p>
+                  Location: {{ business.location.address1 }},{{
+                    business.location.address2
+                  }}
+                  {{ business.location.city }}.
+                </p>
+                <p>Category: {{ business.categories[0].title }}</p>
+                <p>Phone: {{ business.phone }}</p>
+                <!-- <p>Distance: {{}}km</p> -->
+                <p>Reviews: {{ business.review_count }}</p>
+                <p>Ratings: {{ business.rating }}</p>
+              </mat-card-content>
+              <mat-card-actions>
+                <button mat-raised-button>More</button>
+                <button mat-raised-button>Direction</button>
+              </mat-card-actions>
+            </mat-expansion-panel>
+          </mat-accordion>
+
           <!-- <mat-card-actions>
             <button mat-button>{{ business.review_count }}</button>
             <ngb-rating [rate]="{{business.rating}}"></ngb-rating>

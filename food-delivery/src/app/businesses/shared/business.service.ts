@@ -15,7 +15,7 @@ export class BusinessService {
   longitude;
   latitude;
   businesses;
-  term = 'clubs';
+  term = 'restaurants';
   destroy$: Subject<boolean> = new Subject<boolean>();
   getCordinate$: Observable<any>;
   cordinateSub: Subscription;

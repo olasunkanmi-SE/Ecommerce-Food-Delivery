@@ -18,14 +18,12 @@ export class GeoService {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           if (position) {
-            setTimeout(() => {
-              this.location = {
-                lng: position.coords.longitude,
-                lat: position.coords.latitude,
-              };
-            }, 1000);
-
+            this.location = {
+              lng: position.coords.longitude,
+              lat: position.coords.latitude,
+            };
             this.geoLocation$.next(position);
+            return this.location;
           }
         },
         (err) => {

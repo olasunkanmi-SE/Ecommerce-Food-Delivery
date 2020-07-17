@@ -1,8 +1,9 @@
 import { BusinessService } from './../shared/business.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
+import { MatAccordion } from '@angular/material/expansion';
 
 @Component({
   selector: 'app-business-list',
@@ -10,6 +11,7 @@ import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./business-list.component.scss'],
 })
 export class BusinessListComponent implements OnInit {
+  @ViewChild(MatAccordion) accordion: MatAccordion;
   businesses$: Observable<any>;
   businessSub: Subscription;
   businesses;
