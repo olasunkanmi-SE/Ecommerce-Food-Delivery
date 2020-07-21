@@ -14,7 +14,6 @@ export class BusinessListComponent implements OnInit {
   @ViewChild(MatAccordion) accordion: MatAccordion;
   businesses$: Observable<any>;
   businessSub: Subscription;
-
   businesses;
   constructor(
     private businessService: BusinessService,
