@@ -4,6 +4,8 @@ import { Observable, Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 import { MatAccordion } from '@angular/material/expansion';
+import { Store } from '@ngrx/store';
+import * as fromRoot from '../../root-store/state';
 
 @Component({
   selector: 'app-business-list',
@@ -15,9 +17,11 @@ export class BusinessListComponent implements OnInit {
   businesses$: Observable<any>;
   businessSub: Subscription;
   businesses;
+  isLoading$: Observable<boolean>;
   constructor(
     private businessService: BusinessService,
-    config: NgbRatingConfig
+    config: NgbRatingConfig,
+    private store: Store
   ) {
     this.businesses$ = this.businessService.businesses$.asObservable();
     config.max = 5;
@@ -26,7 +30,12 @@ export class BusinessListComponent implements OnInit {
     this.businesses = this.getbusinesses();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.isLoading$ = this.store.select(fromRoot.getIsLoading);
+    this.isLoading$.subscribe((res) => {
+      console.log(res);
+    });
+  }
   getbusinesses() {
     return JSON.parse(localStorage.getItem('businesses'));
   }

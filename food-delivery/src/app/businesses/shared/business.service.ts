@@ -5,6 +5,9 @@ import { HttpClient } from '@angular/common/http';
 import { takeUntil } from 'rxjs/operators';
 import { Observable, Subject, ReplaySubject, Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import * as fromRoot from '../../root-store/state';
+import * as UI from '../../root-store/actions/ui.actions';
 
 @Injectable({
   providedIn: 'root',
@@ -26,7 +29,8 @@ export class BusinessService {
   constructor(
     private httpClient: HttpClient,
     private geoService: GeoService,
-    private router: Router
+    private router: Router,
+    private store: Store<fromRoot.State>
   ) {}
 
   ngOnInit(): void {}
@@ -34,12 +38,14 @@ export class BusinessService {
   getBusinesses() {
     this.term = localStorage.getItem('search');
     this.getUserLocation();
+    this.store.dispatch(new UI.startLoading());
     return this.httpClient
       .get(
         `${this.backendAPI}/search?term=${this.term}&latitude=${this.latitude}&longitude=${this.longitude}`
       )
       .pipe(takeUntil(this.destroy$))
       .subscribe((res) => {
+        this.store.dispatch(new UI.stopLoading());
         this.businesses = res;
         this.businesses$.next(this.businesses);
         this.router.navigate(['businesses']);

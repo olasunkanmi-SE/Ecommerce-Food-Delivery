@@ -1,4 +1,3 @@
-
 import { BusinessesModule } from './businesses/businesses.module';
 import { AuthInterceptor } from './auth/auth-interceptor';
 import { environment } from './../environments/environment';
@@ -17,6 +16,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { reducers } from '../app/root-store/state';
 
 @NgModule({
   declarations: [AppComponent, NavComponent, HomeComponent],
@@ -34,7 +34,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
       maxAge: 25,
       logOnly: environment.production,
     }),
-    StoreModule.forRoot({}),
+    StoreModule.forRoot(reducers),
     NgbModule,
     BusinessesModule,
   ],
