@@ -32,7 +32,6 @@ export class BusinessListComponent implements OnInit {
   }
   persistBusinesses() {
     this.businessSub = this.businesses$.subscribe((res) => {
-      console.log(res);
       this.businesses = res.businesses;
       let localBusinesses = localStorage.setItem(
         'businesses',

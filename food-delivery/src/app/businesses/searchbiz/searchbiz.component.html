@@ -17,20 +17,23 @@
                   matInput
                   [matAutocomplete]="auto"
                   formControlName="search"
+                  placeholder="Find"
                 />
                 <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
                   <mat-option
                     *ngFor="let option of filteredOptions | async"
                     [value]="option"
+                    (click)="getSearchValue(option)"
                     (click)="getSearchValue()"
                   >
                     {{ option }}
                   </mat-option>
                 </mat-autocomplete>
               </mat-form-field>
-              <div class="d-flex">
-                <div class="p-2">
-                  <p style="margin-top: -20px;">
+              <div class="d-flex justify-content-between">
+                <div></div>
+                <div>
+                  <p>
                     <button
                       (click)="getLocation()"
                       mat-raised-button
@@ -41,18 +44,7 @@
                     </button>
                   </p>
                 </div>
-                <div class="ml-auto p-2">
-                  <p style="margin-top: -20px;">
-                    <button
-                      (click)="searchBusiness()"
-                      type="button"
-                      mat-raised-button
-                      color="secondary"
-                    >
-                      Search
-                    </button>
-                  </p>
-                </div>
+                <div></div>
               </div>
             </form>
           </div>
