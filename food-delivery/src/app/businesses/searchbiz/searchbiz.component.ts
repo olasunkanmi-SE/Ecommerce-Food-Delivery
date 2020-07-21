@@ -28,6 +28,7 @@ export class SearchbizComponent implements OnInit {
     'malls',
     'gyms',
     'groceries',
+    'burger',
   ];
   filteredOptions: Observable<string[]>;
   businessSearch: Subject<string> = new Subject<string>();
@@ -59,6 +60,7 @@ export class SearchbizComponent implements OnInit {
       this.lng = res.coords.longitude;
       this.lat = res.coords.latitude;
       this.userLocation = (this.lat, this.lng);
+      console.log(this.lng, this.lat);
       // this.apiLoader.load().then(() => {
       //   let geoCoder = new google.maps.Geocoder();
       //   let latlng = {
@@ -82,7 +84,7 @@ export class SearchbizComponent implements OnInit {
   }
   searchBusiness() {}
 
-  getSearchValue(searchedTerm): string {
+  getSearchValue(searchedTerm: string): string {
     // let searchTerm: { search: string } = this.searchForm.value;
     // let searchValue: string = searchTerm.search;
     localStorage.setItem('search', searchedTerm);

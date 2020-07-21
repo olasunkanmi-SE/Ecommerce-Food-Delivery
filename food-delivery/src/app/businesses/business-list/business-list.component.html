@@ -1,7 +1,53 @@
 <!-- <p *ngFor="let business of businesses">{{ business.name }}</p> -->
-<div class="container">
+<mat-progress-bar
+  *ngIf="isLoading$ | async"
+  mode="indeterminate"
+></mat-progress-bar>
+<div *ngIf="!(isLoading$ | async)" class="container">
   <div class="row">
-    <div *ngFor="let business of businesses" class="col-md-4 mb-3">
+    <div class="col-md-2 mb-3"></div>
+    <div class="col-md-8 mb-3">
+      <app-searchbiz></app-searchbiz>
+    </div>
+    <div class="col-md-2 mb-3"></div>
+  </div>
+  <div class="row">
+    <div class="col-md-10 mb-3">
+      <div class="d-flex">
+        <div class="p-2">Sort By</div>
+
+        <div class="ml-auto p-2"></div>
+      </div>
+    </div>
+    <div class="col-md-1 mb-3"></div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 mb-3">
+      <div class="d-flex">
+        <div class="p-2">
+          <mat-form-field>
+            <mat-label>Price</mat-label>
+            <mat-select>
+              <mat-option value="option1">Option 1</mat-option>
+              <mat-option value="option2">Option 2 </mat-option>
+              <mat-option value="option3">Option 3</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="p-2">
+          <button mat-stroked-button>Distance</button> &nbsp;
+          <button mat-stroked-button>Review</button>&nbsp;
+          <button class="spacer" mat-stroked-button>Rating</button>&nbsp;
+        </div>
+
+        <div class="ml-auto p-2"></div>
+      </div>
+      <hr />
+    </div>
+    <div class="col-md-1 mb-3"></div>
+  </div>
+  <div class="row">
+    <div *ngFor="let business of businesses" class="col-md-3 mb-3">
       <div>
         <mat-card class="example-card">
           <img
