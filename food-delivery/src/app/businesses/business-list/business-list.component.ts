@@ -22,15 +22,11 @@ export class BusinessListComponent implements OnInit {
     this.businesses$ = this.businessService.businesses$.asObservable();
     config.max = 5;
     config.readonly = true;
+    this.persistBusinesses();
+    this.businesses = this.getbusinesses();
   }
 
-  ngOnInit(): void {
-    if (this.getbusinesses()) {
-      this.businesses = this.getbusinesses();
-    } else {
-      this.persistBusinesses();
-    }
-  }
+  ngOnInit(): void {}
   getbusinesses() {
     return JSON.parse(localStorage.getItem('businesses'));
   }

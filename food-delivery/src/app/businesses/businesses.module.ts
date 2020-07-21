@@ -6,9 +6,24 @@ import { BusinessComponent } from './business/business.component';
 import { BusinessListComponent } from './business-list/business-list.component';
 import { MatModule } from '../shared/components/mat/mat.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SearchbizComponent } from './searchbiz/searchbiz.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [BusinessesComponent, BusinessComponent, BusinessListComponent],
-  imports: [CommonModule, BusinessesRoutingModule, MatModule, NgbModule],
+  declarations: [
+    BusinessesComponent,
+    BusinessComponent,
+    BusinessListComponent,
+    SearchbizComponent,
+  ],
+  imports: [
+    CommonModule,
+    BusinessesRoutingModule,
+    MatModule,
+    NgbModule,
+    ReactiveFormsModule,
+    FormsModule,
+  ],
+  exports: [SearchbizComponent],
 })
 export class BusinessesModule {}

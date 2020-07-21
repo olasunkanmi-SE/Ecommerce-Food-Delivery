@@ -1,3 +1,5 @@
+
+import { BusinessesModule } from './businesses/businesses.module';
 import { AuthInterceptor } from './auth/auth-interceptor';
 import { environment } from './../environments/environment';
 import { MatModule } from './shared/components/mat/mat.module';
@@ -34,6 +36,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     }),
     StoreModule.forRoot({}),
     NgbModule,
+    BusinessesModule,
   ],
 
   providers: [
