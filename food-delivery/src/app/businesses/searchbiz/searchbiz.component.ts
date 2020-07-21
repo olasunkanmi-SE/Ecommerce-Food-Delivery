@@ -27,6 +27,7 @@ export class SearchbizComponent implements OnInit {
     'barbers',
     'malls',
     'gyms',
+    'groceries',
   ];
   filteredOptions: Observable<string[]>;
   businessSearch: Subject<string> = new Subject<string>();
@@ -79,17 +80,14 @@ export class SearchbizComponent implements OnInit {
       (option) => option.toLowerCase().indexOf(filterValue) === 0
     );
   }
+  searchBusiness() {}
 
-  searchBusiness() {
-    this.getSearchValue();
+  getSearchValue(searchedTerm): string {
+    // let searchTerm: { search: string } = this.searchForm.value;
+    // let searchValue: string = searchTerm.search;
+    localStorage.setItem('search', searchedTerm);
+    this.businessSearch.next(searchedTerm);
     this.businessService.getBusinesses();
-  }
-
-  getSearchValue(): string {
-    let searchTerm: { search: string } = this.searchForm.value;
-    let searchValue: string = searchTerm.search;
-    localStorage.setItem('search', searchValue);
-    // this.businessSearch.next(searchValue);
-    return searchValue;
+    return searchedTerm;
   }
 }
