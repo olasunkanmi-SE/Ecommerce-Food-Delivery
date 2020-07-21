@@ -80,7 +80,6 @@ export class SearchbizComponent implements OnInit {
       (option) => option.toLowerCase().indexOf(filterValue) === 0
     );
   }
-
   searchBusiness() {}
 
   getSearchValue(searchedTerm): string {
