@@ -1,9 +1,9 @@
 <!-- <p *ngFor="let business of businesses">{{ business.name }}</p> -->
-<mat-progress-bar
+<!-- <mat-progress-bar
   *ngIf="isLoading$ | async"
   mode="indeterminate"
-></mat-progress-bar>
-<div *ngIf="!(isLoading$ | async)" class="container">
+></mat-progress-bar> -->
+<div class="container">
   <div class="row">
     <div class="col-md-2 mb-3"></div>
     <div class="col-md-8 mb-3">
@@ -50,12 +50,27 @@
     <div *ngFor="let business of businesses" class="col-md-3 mb-3">
       <div>
         <mat-card class="example-card">
+          <app-skeleton-loader
+            *ngIf="isLoading$ | async"
+            Cwidth="220"
+            Cheight="200"
+          ></app-skeleton-loader>
           <img
+            *ngIf="!(isLoading$ | async)"
             style="max-height: 250px;"
             mat-card-image
             src="{{ business.image_url }}"
           />
-          <mat-accordion class="example-headers-align" multi>
+          <app-skeleton-loader
+            *ngIf="isLoading$ | async"
+            Cwidth="220"
+            Cheight="50"
+          ></app-skeleton-loader>
+          <mat-accordion
+            *ngIf="!(isLoading$ | async)"
+            class="example-headers-align"
+            multi
+          >
             <mat-expansion-panel>
               <mat-expansion-panel-header>
                 <mat-panel-title>
