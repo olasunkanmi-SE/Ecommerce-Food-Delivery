@@ -8,6 +8,7 @@ import { MatModule } from '../shared/components/mat/mat.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SearchbizComponent } from './searchbiz/searchbiz.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { SkeletonLoaderComponent } from './skeleton-loader/skeleton-loader.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     BusinessComponent,
     BusinessListComponent,
     SearchbizComponent,
+    SkeletonLoaderComponent,
   ],
   imports: [
     CommonModule,
