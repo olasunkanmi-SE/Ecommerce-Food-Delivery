@@ -7,3 +7,16 @@
     margin-top: 10px;
   }
 }
+
+.example-full-width {
+  width: 100%;
+}
+.example-headers-align {
+  width: 100%;
+}
+
+@media only screen and (max-width: 600px) {
+  .spacer {
+    margin-top: 10px;
+  }
+}
