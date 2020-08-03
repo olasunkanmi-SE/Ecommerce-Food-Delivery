@@ -1,5 +1,10 @@
 <body>
   <div>
-    <app-searchbiz></app-searchbiz>
+    <mat-progress-bar
+      *ngIf="isLoading$ | async"
+      mode="indeterminate"
+    ></mat-progress-bar>
+
+    <app-searchbiz *ngIf="!(isLoading$ | async)"></app-searchbiz>
   </div>
 </body>

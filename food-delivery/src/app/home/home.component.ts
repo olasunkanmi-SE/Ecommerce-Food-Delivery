@@ -1,4 +1,7 @@
+import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
+import * as fromRoot from '../../app/root-store/state';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-home',
@@ -6,7 +9,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  constructor() {}
+  isLoading$: Observable<boolean>;
+  constructor(private store: Store) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.isLoading$ = this.store.select(fromRoot.getIsLoading);
+  }
 }
