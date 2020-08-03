@@ -2,7 +2,7 @@ import { GeoService } from './../../home/services/geo.service';
 import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntil, shareReplay } from 'rxjs/operators';
 import { Observable, Subject, ReplaySubject, Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -43,7 +43,10 @@ export class BusinessService {
       .get(
         `${this.backendAPI}/search?term=${this.term}&latitude=${this.latitude}&longitude=${this.longitude}`
       )
-      .pipe(takeUntil(this.destroy$))
+      .pipe(
+        takeUntil(this.destroy$),
+        shareReplay({ bufferSize: 1, refCount: true })
+      )
       .subscribe((res) => {
         this.store.dispatch(new UI.stopLoading());
         this.businesses = res;
