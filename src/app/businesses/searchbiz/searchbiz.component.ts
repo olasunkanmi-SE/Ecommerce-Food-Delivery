@@ -61,18 +61,18 @@ export class SearchbizComponent implements OnInit {
       this.lat = res.coords.latitude;
       this.userLocation = (this.lat, this.lng);
       console.log(this.lng, this.lat);
-      // this.apiLoader.load().then(() => {
-      //   let geoCoder = new google.maps.Geocoder();
-      //   let latlng = {
-      //     lat: this.lat,
-      //     lng: this.lng,
-      //   };
-      //   geoCoder.geocode({ location: latlng }, (results) => {
-      //     if (results[0]) {
-      //       this.currentLocation = results[0].formatted_address;
-      //     }
-      //   });
-      // });
+      this.apiLoader.load().then(() => {
+        let geoCoder = new google.maps.Geocoder();
+        let latlng = {
+          lat: this.lat,
+          lng: this.lng,
+        };
+        geoCoder.geocode({ location: latlng }, (results) => {
+          if (results[0]) {
+            this.currentLocation = results[0].formatted_address;
+          }
+        });
+      });
     });
   }
 

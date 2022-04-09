@@ -5,7 +5,7 @@ import { Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class GeoService {
-  geoLocation$: Subject<any> = new Subject<any>();
+  geoLocation$: Subject<any> = new Subject<{lng:string, lat:string}>();
   location;
   lat;
   lng: {};
@@ -15,6 +15,7 @@ export class GeoService {
   getUserLocation(options?) {
     if (!this.started) {
       this.started = true;
+    }
       navigator.geolocation.getCurrentPosition(
         (position) => {
           if (position) {
@@ -33,4 +34,3 @@ export class GeoService {
       );
     }
   }
-}

@@ -2,7 +2,7 @@ import { GeoService } from './../../home/services/geo.service';
 import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { takeUntil, shareReplay } from 'rxjs/operators';
+import { takeUntil, shareReplay, tap } from 'rxjs/operators';
 import { Observable, Subject, ReplaySubject, Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -26,6 +26,7 @@ export class BusinessService {
   cordinateSub: Subscription;
   //Cache the http response
   businesses$: ReplaySubject<any> = new ReplaySubject<any>(1);
+  location$: Observable<{lng:string, lat:string}>;
   constructor(
     private httpClient: HttpClient,
     private geoService: GeoService,
@@ -55,11 +56,11 @@ export class BusinessService {
       });
   }
   getUserLocation() {
-    this.location = this.geoService.location;
-    if (location) {
-      this.longitude = this.location.lng;
-      this.latitude = this.location.lat;
-    }
+    this.location$ = this.geoService.geoLocation$.pipe(tap());
+    this.location$.subscribe((res)=>{
+      this.longitude = res.lng;
+      this.latitude = res.lat;
+    })
   }
 
   ngOnDestroy(): void {
